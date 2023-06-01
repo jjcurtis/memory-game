@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import style from '../style/Pokeboard.module.css';
 import { PokeCard } from './PokeCard';
 
 type Props = {};
 
-type PokemonType = {
+export type PokemonType = {
   name: string;
   image: string;
 };
@@ -28,7 +28,20 @@ export function Pokeboard({}: Props) {
     }
   }, []);
 
-  const pokemonCount = 100;
+  const pokemonCount = 15;
+
+  function shuffleArray(
+    array: PokemonType[]
+  ): PokemonType[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    return array;
+  }
 
   return (
     <section
@@ -36,10 +49,13 @@ export function Pokeboard({}: Props) {
       aria-label="Gameboard"
       className={style.gameboard}
     >
-      {pokemon.map(eachPokemon => (
+      {pokemon.map((eachPokemon, index) => (
         <PokeCard
+          key={index}
           name={eachPokemon.name}
           image={eachPokemon.image}
+          shuffleArray={shuffleArray}
+          setPokemon={setPokemon}
         />
       ))}
     </section>
