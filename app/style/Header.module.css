@@ -1,0 +1,19 @@
+.header {
+    background-color: #37393E;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #F9C932;
+}
+
+.logo {
+    width: min-content;
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: white;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+}
