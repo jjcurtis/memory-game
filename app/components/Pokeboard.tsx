@@ -1,16 +1,19 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import style from '../style/Pokeboard.module.css';
 import { PokeCard } from './PokeCard';
 
-type Props = {};
+type Props = {
+  setScore: React.Dispatch<SetStateAction<number>>
+};
 
 export type PokemonType = {
   name: string;
   image: string;
 };
 
-export function Pokeboard({}: Props) {
+export function Pokeboard({ setScore }: Props) {
   const [pokemon, setPokemon] = useState<PokemonType[]>([]);
+  const [memoryBank, setMemoryBank] = useState<string[]>([])
 
   useEffect(() => {
     for (let i = 1; i <= pokemonCount; i++) {
@@ -56,6 +59,9 @@ export function Pokeboard({}: Props) {
           image={eachPokemon.image}
           shuffleArray={shuffleArray}
           setPokemon={setPokemon}
+          memoryBank={memoryBank}
+          setMemoryBank={setMemoryBank}
+          setScore={setScore}
         />
       ))}
     </section>
