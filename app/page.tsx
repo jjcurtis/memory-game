@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Header } from './components/Header'
 import style from './page.module.css'
+import { Pokeboard } from './components/Pokeboard';
 
 export default function Home() {
   const [score, setScore] = useState(0);
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <main>
       <Header score={score} highScore={score}/>
+      <Pokeboard />
     </main>
   )
 }
